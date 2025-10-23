@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Anomaly Predictor</title>
+</head>
+<body>
+    <h2>Anomaly Prediction Form</h2>
+    <form id="predictForm">
+        Node_enc: <input type="number" name="Node_enc" value="0"><br>
+        Component_enc: <input type="number" name="Component_enc" value="1"><br>
+        State_enc: <input type="number" name="State_enc" value="16"><br>
+        EventId_enc: <input type="number" name="EventId_enc" value="3"><br>
+        EventTemplate_enc: <input type="number" name="EventTemplate_enc" value="3"><br>
+        hour: <input type="number" name="hour" value="11"><br>
+        dayofweek: <input type="number" name="dayofweek" value="1"><br>
+        <button type="submit">Predict</button>
+    </form>
+    <h3 id="result"></h3>
+
+    <script>
+        document.getElementById('predictForm').onsubmit = async function(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = {};
+            formData.forEach((value, key) => { data[key] = Number(value); });
+
+            const res = await fetch('http://127.0.0.1:8000/predict', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const result = await res.json();
+            document.getElementById('result').innerText = 
+                result.prediction === 1 ? "Anomaly Detected" : "Normal Event";
+        };
+    </script>
+</body>
+</html>

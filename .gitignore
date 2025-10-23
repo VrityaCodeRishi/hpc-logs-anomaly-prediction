@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.Python
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage*
+coverage.xml
+htmlcov/
+.tox/
+
+# Virtual environments
+venv/
+.venv/
+
+# Model and experiment artifacts
+models/*.pkl
+mlruns/
+
+# Data exports generated during feature engineering / training
+raw/data/X_train.csv
+raw/data/X_test.csv
+raw/data/y_train.csv
+raw/data/y_test.csv
+raw/data/hpc_features.csv
+
+# Logs
+*.log
+
+# FastAPI / Uvicorn runtime files
+uvicorn.log
+
+# Node / React
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+src/predictive-frontend/build/
+
+# OS & editor cruft
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Caches
+.cache/
